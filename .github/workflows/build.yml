@@ -1,23 +1,57 @@
 name: Flutter Build APK
-on: [push]
+
+on:
+  push:
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      
-      # main.dart ഫയലിനെ ശരിയായ ഫോൾഡറിലേക്ക് മാറ്റാനുള്ള വഴി
-      - run: |
+          channel: stable
+          cache: true
+
+      # The repo has no android/ folder, so `flutter build apk` cannot work
+      # until we generate it. Keep our own pubspec.yaml and main.dart.
+      - name: Create Android project files
+        run: |
+          cp pubspec.yaml "$RUNNER_TEMP/pubspec.backup.yaml"
+          [ -f lib/main.dart ] && cp lib/main.dart "$RUNNER_TEMP/main.backup.dart" || true
+          flutter create . --platforms=android --project-name arise_app --org com.arise
+          cp "$RUNNER_TEMP/pubspec.backup.yaml" pubspec.yaml
           mkdir -p lib
-          mv main.dart lib/main.dart || true
-          
+          if [ -f main.dart ]; then
+            cp main.dart lib/main.dart
+          elif [ -f "$RUNNER_TEMP/main.backup.dart" ]; then
+            cp "$RUNNER_TEMP/main.backup.dart" lib/main.dart
+          fi
+          rm -rf test
+
+      # The app calls the internet (http.post); release APKs need this permission.
+      - name: Allow internet access
+        run: |
+          M=android/app/src/main/AndroidManifest.xml
+          grep -q 'android.permission.INTERNET' "$M" || \
+            sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' "$M"
+
+      - run: flutter pub get
+
       - run: flutter build apk --debug
+
       - uses: actions/upload-artifact@v4
         with:
           name: arise-app-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
