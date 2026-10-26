@@ -37,7 +37,6 @@ class AriseApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: systemCyan,
           secondary: coinsGold,
-          background: obsidianBlack,
         ),
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontFamily: 'Courier', color: highlightWhite),
@@ -120,7 +119,7 @@ class _MainGateLayoutState extends State<MainGateLayout> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: obsidianBlack,
           selectedItemColor: systemCyanGlow,
-          unselectedItemColor: passiveGray.withOpacity(0.5),
+          unselectedItemColor: passiveGray.withValues(alpha: 0.5),
           selectedLabelStyle: const TextStyle(fontFamily: 'Courier', fontSize: 10, fontWeight: FontWeight.bold),
           unselectedLabelStyle: const TextStyle(fontFamily: 'Courier', fontSize: 9),
           items: const [
@@ -195,7 +194,7 @@ class DashboardGate extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: systemCyan.withOpacity(0.15),
+                  color: systemCyan.withValues(alpha: 0.15),
                   border: Border.all(color: systemCyan),
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -307,7 +306,7 @@ class DashboardGate extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: deepSpaceBlue,
-          border: Border.all(color: borderCyanSemi.withOpacity(0.15)),
+          border: Border.all(color: borderCyanSemi.withValues(alpha: 0.15)),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -495,7 +494,7 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen>
                 style: TextStyle(
                   color: penaltyRed,
                   fontFamily: 'Courier',
-                  fontWeight: FontWeight.black,
+                  fontWeight: FontWeight.w900,
                   fontSize: 22,
                   letterSpacing: 2,
                   shadows: [
@@ -536,8 +535,8 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen>
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: deepSpaceBlue.withOpacity(0.6),
-                  border: Border.all(color: borderCyanSemi.withOpacity(0.4)),
+                  color: deepSpaceBlue.withValues(alpha: 0.6),
+                  border: Border.all(color: borderCyanSemi.withValues(alpha: 0.4)),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
@@ -601,14 +600,14 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen>
                 child: Container(
                   height: 48,
                   decoration: BoxDecoration(
-                    color: _isProcessing ? deepSpaceBlue : systemCyan.withOpacity(0.15),
+                    color: _isProcessing ? deepSpaceBlue : systemCyan.withValues(alpha: 0.15),
                     border: Border.all(
-                      color: _isProcessing ? borderCyanSemi.withOpacity(0.5) : systemCyan,
+                      color: _isProcessing ? borderCyanSemi.withValues(alpha: 0.5) : systemCyan,
                       width: 1.5,
                     ),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  alignment: Alignment.Center,
+                  alignment: Alignment.center,
                   child: Text(
                     _isProcessing ? "[ PROCESSING DEPOSIT... ]" : "UNLOCK MEMBERSHIP KEY (₹100)",
                     style: TextStyle(
@@ -641,8 +640,8 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen>
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: systemCyan.withOpacity(0.04),
-                  border: Border.all(color: systemCyan.withOpacity(0.15)),
+                  color: systemCyan.withValues(alpha: 0.04),
+                  border: Border.all(color: systemCyan.withValues(alpha: 0.15)),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Column(
@@ -722,7 +721,7 @@ class GateRingPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paintOuter = Paint()
-      ..color = systemCyanGlow.withOpacity(0.2)
+      ..color = systemCyanGlow.withValues(alpha: 0.2)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 
@@ -972,7 +971,7 @@ THE SHADOW MONARCH HIGHLIGHTS YOUR RESOLVE. ARISE!
                         color: systemCyan,
                         boxShadow: [
                           BoxShadow(
-                            color: systemCyan.withOpacity(0.8),
+                            color: systemCyan.withValues(alpha: 0.8),
                             blurRadius: 4,
                           ),
                         ],
@@ -1008,7 +1007,7 @@ THE SHADOW MONARCH HIGHLIGHTS YOUR RESOLVE. ARISE!
               borderSide: BorderSide(color: systemCyan),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderCyanSemi.withOpacity(0.5)),
+              borderSide: BorderSide(color: borderCyanSemi.withValues(alpha: 0.5)),
             ),
           ),
           controller: TextEditingController(text: _customGoal),
@@ -1017,7 +1016,7 @@ THE SHADOW MONARCH HIGHLIGHTS YOUR RESOLVE. ARISE!
         const SizedBox(height: 24),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: systemCyan.withOpacity(0.15),
+            backgroundColor: systemCyan.withValues(alpha: 0.15),
             side: const BorderSide(color: systemCyan, width: 1.5),
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
@@ -1044,8 +1043,8 @@ THE SHADOW MONARCH HIGHLIGHTS YOUR RESOLVE. ARISE!
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isSelected ? systemCyan.withOpacity(0.1) : deepSpaceBlue,
-          border: Border.all(color: isSelected ? systemCyan : borderCyanSemi.withOpacity(0.2)),
+          color: isSelected ? systemCyan.withValues(alpha: 0.1) : deepSpaceBlue,
+          border: Border.all(color: isSelected ? systemCyan : borderCyanSemi.withValues(alpha: 0.2)),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Row(
@@ -1141,7 +1140,7 @@ THE SHADOW MONARCH HIGHLIGHTS YOUR RESOLVE. ARISE!
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Colors.black,
-            border: Border.all(color: borderCyanSemi.withOpacity(0.4)),
+            border: Border.all(color: borderCyanSemi.withValues(alpha: 0.4)),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
@@ -1285,7 +1284,7 @@ class _HoloCoachScreenState extends State<HoloCoachScreen> with SingleTickerProv
                           child: Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.8),
+                              color: Colors.black.withValues(alpha: 0.8),
                               border: Border.all(color: borderCyanSemi),
                               borderRadius: BorderRadius.circular(4),
                             ),
@@ -1396,8 +1395,8 @@ class _HoloCoachScreenState extends State<HoloCoachScreen> with SingleTickerProv
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: isSelected ? systemCyan.withOpacity(0.15) : mediumSpaceBlue,
-                  border: Border.all(color: isSelected ? systemCyan : borderCyanSemi.withOpacity(0.3)),
+                  color: isSelected ? systemCyan.withValues(alpha: 0.15) : mediumSpaceBlue,
+                  border: Border.all(color: isSelected ? systemCyan : borderCyanSemi.withValues(alpha: 0.3)),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
@@ -1429,7 +1428,7 @@ class SkeletalMeshPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paintGrid = Paint()
-      ..color = systemCyan.withOpacity(0.04)
+      ..color = systemCyan.withValues(alpha: 0.04)
       ..strokeWidth = 1;
 
     // Draw coordinate system lines
@@ -1639,7 +1638,6 @@ class _VoiceTrainerScreenState extends State<VoiceTrainerScreen> with SingleTick
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 12.0),
-                                  highlightSize: 0,
                                   child: Text(
                                     _isListening ? "Say 'Arise ...' or choose preset below" : "TTS ENGINE STABILIZED",
                                     style: const TextStyle(fontFamily: 'Courier', color: passiveGray, fontSize: 8),
@@ -1676,8 +1674,8 @@ class _VoiceTrainerScreenState extends State<VoiceTrainerScreen> with SingleTick
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: deepSpaceBlue.withOpacity(0.4),
-                        border: Border.all(color: borderCyanSemi.withOpacity(0.2)),
+                        color: deepSpaceBlue.withValues(alpha: 0.4),
+                        border: Border.all(color: borderCyanSemi.withValues(alpha: 0.2)),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       padding: const EdgeInsets.all(12),
@@ -1733,7 +1731,7 @@ class _VoiceTrainerScreenState extends State<VoiceTrainerScreen> with SingleTick
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: mediumSpaceBlue,
-            border: Border.all(color: borderCyanSemi.withOpacity(0.4)),
+            border: Border.all(color: borderCyanSemi.withValues(alpha: 0.4)),
             borderRadius: BorderRadius.circular(6),
           ),
           child: Text(
@@ -1769,9 +1767,9 @@ class _VoiceTrainerScreenState extends State<VoiceTrainerScreen> with SingleTick
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: isUser ? systemCyan.withOpacity(0.08) : Colors.black.withOpacity(0.6),
+              color: isUser ? systemCyan.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: isUser ? borderCyanSemi.withOpacity(0.2) : Colors.transparent),
+              border: Border.all(color: isUser ? borderCyanSemi.withValues(alpha: 0.2) : Colors.transparent),
             ),
             child: Text(
               text,
@@ -1803,16 +1801,16 @@ class VoiceWavesPainter extends CustomPainter {
 
     if (isListening) {
       final paintOuterWave = Paint()
-        ..color = systemCyanGlow.withOpacity(0.12)
+        ..color = systemCyanGlow.withValues(alpha: 0.12)
         ..style = PaintingStyle.fill;
-      canvas.drawCircle(cx, cy, 50 + (pulseFactor * 32), paintOuterWave);
+      canvas.drawCircle(Offset(cx, cy), 50 + (pulseFactor * 32), paintOuterWave);
     }
 
     // Anchor node
     final paintCore = Paint()
       ..color = systemCyan
       ..style = PaintingStyle.fill;
-    canvas.drawCircle(cx, cy, 18, paintCore);
+    canvas.drawCircle(Offset(cx, cy), 18, paintCore);
 
     final paintMesh = Paint()
       ..color = systemCyanGlow
